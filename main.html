@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script type="text/javascript" src="./lightbox/js/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="./lightbox/js/lightbox.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="./lightbox/css/lightbox.css">
+		<script type="text/javascript" src="newStyle.js"></script>
+		<title>Image Retrieval</title>
+		<script>
+		var clickedName = "init";
+    	$(document).ready(function() {
+        	<!-- 注意，关于插件使用请参考 http://www.lokeshdhakar.com/projects/lightbox2/ -->
+        	$(".algorithm").click(function(){
+        		$("#main-holder").hide(600);
+        		$("#left-list").hide(600);
+				$("#back1").hide(600);
+				$("#original").show(1000);
+        		$("#back").show(1000);
+				$("#prev").show(1000);
+				$("#next").show(1000);
+        		$("#searchResultContainer").show(1000);
+        	});
+        	$(".algorithm").hover(function(){ 
+				$(this).children().finish().toggle(300); 
+			}, function(){ 
+				$(this).children().finish().toggle(300); 
+			});
+			$("#back").click(function(){
+				$("#back").hide(1000);
+				$("#prev").hide(1000);
+				$("#next").hide(1000);
+				$("#original").hide(1000);
+        		$("#searchResultContainer").hide(1000);
+				$("#back1").show(600);
+				$("#main-holder").show(600);
+        		$("#left-list").show(600);
+			});
+    	});
+		
+		//getResult("HOF");
+		getResult("IR");
+		//getResult("HOG");
+		//getResult("GIST");
+		//getResult("TEST");
+		
+    	</script>
+		<style type="text/css">
+			*{
+				font-family: 微软雅黑;
+				font-size: 32px;
+				color: rgb(205,205,205);
+			}
+			ul {
+				padding: 0;
+				margin: 0;
+				width: 200px;
+				list-style: none;
+				float: left;
+			}
+			li {
+				height: 88px;
+				width: 200px;
+				list-style: none;
+				line-height: 88px;
+				text-align: center;
+			}
+			body {
+				background: url('./background.jpg') fixed;
+				background-size: 100% 100%;
+			}
+			.smallpic {
+				height: 76px;
+				width: 76px;
+			}
+			.bigpic {
+				height: 90px;
+				width: 90px;
+			}
+			.images {
+				background: url("./34.png") top left no-repeat;
+				background-size: 100% 100%;
+			}
+			#left-list {
+				margin-left: 150px;
+				margin-top: 50px;
+				background: url("./36.png") top left no-repeat;
+				background-size: 100% 100%;
+				background-position: -1px -1px;
+			}
+			#main-holder {
+				margin-left: 60px;
+				margin-top: 50px;
+				width: 800px;
+				float: left;
+				background: url("./37.png") top left no-repeat;
+				background-size: 100% 100%;
+				background-position: 0 -1px;
+			}
+			#searchResultContainer {
+				display: none;
+				width: 1140px;
+				position: absolute;
+				left: 160px;
+				top: 70px;
+			}
+			#searchResultContainer .images{
+				float: left;
+				margin-right: 100px;
+				margin-bottom: 40px;
+			}
+			#main-holder .images{
+				margin-left: 60px;
+				margin-bottom: 12px;
+			}
+			#original {
+				width:100px;
+				height:100px;
+				position:absolute;
+				left:20px;
+				top:520px;
+				display: none;
+			}
+			.algorithm {
+				position: relative;
+				cursor: pointer;
+			}
+			.tips{
+				height: 88px;
+				width: 700px;
+				position: absolute;
+				margin-left: 458px;
+				top: -8px;
+				left: -150px;
+				display: none;
+				line-height: 88px;
+				text-align: center;
+				color: #808080;
+				font-size: 16px;
+				background-color: #bbcdc5;
+			}
+			#back{
+				width:50px;
+				height:50px;
+				position:absolute;
+				left:20px;
+				top:80px;
+				display: none;
+				cursor: pointer;
+			}
+			#prev{
+				width:50px;
+				height:50px;
+				position:absolute;
+				left:20px;
+				top:280px;
+				display: none;
+				cursor: pointer;
+			}
+			#next{
+				width:50px;
+				height:50px;
+				position:absolute;
+				left:1300px;
+				top:280px;
+				display: none;
+				cursor: pointer;
+			}
+			#back1{
+				width:50px;
+				height:50px;
+				position:absolute;
+				left:20px;
+				top:280px;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<img id="back" src="back.png">
+		<a href="index.html"><img src="back1.png" height="40" border="0" id="back1"></a>
+		<img id="prev" src="prev.png">
+		<img id="next" src="next.png">
+		<div id="original"><a href="这里写地址" data-lightbox="image-1"><img style="width:100px;height:100px;" src="34.png"></a></div>
+		
+		<ul id="left-list">
+			<li>algorithm</li>
+			<li class="algorithm"><span class="tips" id = "tag_HOF">Guess What you Draw:</span>HOF</li>
+			<li class="algorithm"><span class="tips" id = "tag_IR">Guess What you Draw:</span>IR</li>
+			<li class="algorithm"><span class="tips" id = "tag_HOG">Guess What you Draw:</span>HOG</li>
+			<li class="algorithm"><span class="tips" id = "tag_GIST">Guess What you Draw:</span>GIST</li>
+			<li class="algorithm"><span class="tips" id = "tag_TEST">Guess What you Draw:</span>TEST</li>
+		</ul>
+		<div id="main-holder">
+			<ul>
+				<li >feature1</li>
+				<li class="images smallpic" id="image1"></li>
+				<li class="images smallpic" id="image2"></li>
+				<li class="images smallpic" id="image3"></li>
+				<li class="images smallpic" id="image4"></li>
+				<li class="images smallpic" id="image5"></li>
+			</ul>
+			<ul>
+				<li>feature2</li>
+				<li class="images smallpic" id="image6"></li>
+				<li class="images smallpic" id="image7"></li>
+				<li class="images smallpic" id="image8"></li>
+				<li class="images smallpic" id="image9"></li>
+				<li class="images smallpic" id="image10"></li>
+			</ul>
+			<ul>
+				<li>feature3</li>
+				<li class="images smallpic" id="image11"></li>
+				<li class="images smallpic" id="image12"></li>
+				<li class="images smallpic" id="image13"></li>
+				<li class="images smallpic" id="image14"></li>
+				<li class="images smallpic" id="image15"></li>
+			</ul>
+			<ul>
+				<li>feature4</li>
+				<li class="images smallpic" id="image16"></li>
+				<li class="images smallpic" id="image17"></li>
+				<li class="images smallpic" id="image18"></li>
+				<li class="images smallpic" id="image19"></li>
+				<li class="images smallpic" id="image20"></li>
+			</ul>	
+		</div>
+		<div id="searchResultContainer" title="Search Result"></div>
+	</body>
+	</body>
+</html>

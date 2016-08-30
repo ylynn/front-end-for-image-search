@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script type="text/javascript" src="./lightbox/js/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="./lightbox/js/lightbox.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="./lightbox/css/lightbox.css">
+		<title>Image Retrieval</title>
+		<script>
+    	$(document).ready(function() {
+//         $("#actionAreaContainer").dialog({width : 535, height: 140, position : [0, 600]});
+//         $("#tagContainer").dialog({width : 640, height:130, position : [600, 600]});
+        	for (var i = 0; i < 24; i++) {
+            	$("#searchResultContainer").append("<div id=\"imageContainer"+i+"\" class=\"images\" ><a href=\"./test"+i%12+".jpg\" data-lightbox=\"image-1\"><img src=\"test"+i%12+".jpg\"></a></div>");
+        	}
+        	<!-- 注意，关于插件使用请参考 http://www.lokeshdhakar.com/projects/lightbox2/ -->
+    	});
+    </script>
+		<style type="text/css">
+			img , .images {
+				height: 90px;
+				width: 90px;
+			}
+			body {
+				background: url('./background.jpg') fixed;
+				background-size: 100% 100%;
+			}
+			.images {
+				float: left;
+				margin-left: 100px;
+				margin-bottom: 40px;
+				box-shadow: -1px -1px 10px rgb(165,165,165),-1px 1px 10px rgb(165,165,165),1px -1px 10px rgb(165,165,165),1px 1px 10px rgb(165,165,165);
+				background: url("./34.png") top left no-repeat;
+				background-size: 100% 100%;
+			}
+			#searchResultContainer {
+				margin-left: 60px;
+				margin-top: 70px;
+				width: 1200px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="searchResultContainer" title="Search Result">
+   		</div>
+	</body>
+</html>
